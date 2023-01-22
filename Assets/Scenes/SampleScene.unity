@@ -301,6 +301,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1785025454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6952359020858852897, guid: 89810aec87517e744a936846710cf2f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6952359020441321451}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1785025458
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785025454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 1.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!1001 &6952359020441321451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,6 +328,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 431229443, guid: 89810aec87517e744a936846710cf2f7, type: 3}
+      propertyPath: m_Constraints
+      value: 84
+      objectReference: {fileID: 0}
     - target: {fileID: 6952359020858563073, guid: 89810aec87517e744a936846710cf2f7,
         type: 3}
       propertyPath: m_RootOrder
@@ -367,6 +391,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: JohnLemon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6952359020868351465, guid: 89810aec87517e744a936846710cf2f7,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89810aec87517e744a936846710cf2f7, type: 3}
