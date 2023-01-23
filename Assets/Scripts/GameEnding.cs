@@ -20,21 +20,31 @@ public class GameEnding : MonoBehaviour
     [SerializeField]
     private CanvasGroup geCaughtUICanvasGroup;
 
+    // bool to determine player stauts in the game
     private bool didPlayerReachExit;
     private bool didPlayerGetCaught;
 
+    // calculate time for displaying Win/Gameover UI messages
     private float timer;
 
+    // Audio Setup
+    [SerializeField]
+    private AudioSource escapeAudio;
+
+    [SerializeField]
+    private AudioSource caughtAudio;
+
+    private bool hasAudioPlayed;
 
     void Update()
     {
         if (didPlayerReachExit)
         {
-            EndLevel(endGameUICanvasGroup, false);
+            EndLevel(endGameUICanvasGroup, false, escapeAudio);
         }
         else if (didPlayerGetCaught)
         {
-            EndLevel(geCaughtUICanvasGroup, true);
+            EndLevel(geCaughtUICanvasGroup, true, caughtAudio);
         }
     }
 
@@ -48,8 +58,15 @@ public class GameEnding : MonoBehaviour
         }
     }
 
-    void EndLevel(CanvasGroup canvasGroup, bool Restart)
+    void EndLevel(CanvasGroup canvasGroup, bool Restart, AudioSource audioSource)
     {
+        // Play the audio once when the method is called
+        if (!hasAudioPlayed)
+        {
+            audioSource.Play();
+            hasAudioPlayed = true;
+        }
+
         // how much time then the player ended the level
         timer += Time.deltaTime;
         
