@@ -18,11 +18,15 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
 
+    // footsteps audio source
+    AudioSource footStepsAudio;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        footStepsAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -40,6 +44,17 @@ public class PlayerMovement : MonoBehaviour
 
         bool isWalking = hasHorizontalInput || hasVerticalInput;
         animator.SetBool(AnimatorTags.isWalkingTag, isWalking);
+
+        // play the sound when the player moves
+        if (isWalking)
+        {
+            if (!footStepsAudio.isPlaying)
+                footStepsAudio.Play();
+        }
+        else
+        {
+            footStepsAudio.Stop();
+        }
 
         // Vector for the direction the player is gonna rotate to
         Vector3 desiredForward = Vector3.RotateTowards(transform.forward, movement, turnSpeed * Time.deltaTime, 0.0f);
