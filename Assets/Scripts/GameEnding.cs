@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameEnding : MonoBehaviour
 {
@@ -13,11 +14,15 @@ public class GameEnding : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
-    // referance to the canvas group
+    // referance to the end game and get caught canvas group
     [SerializeField]
     private CanvasGroup endGameUICanvasGroup;
+    [SerializeField]
+    private CanvasGroup geCaughtUICanvasGroup;
 
     private bool didPlayerReachExit;
+    private bool didPlayerGetCaught;
+
     private float timer;
 
 
@@ -25,7 +30,11 @@ public class GameEnding : MonoBehaviour
     {
         if (didPlayerReachExit)
         {
-            EndLevel();
+            EndLevel(endGameUICanvasGroup, false);
+        }
+        else if (didPlayerGetCaught)
+        {
+            EndLevel(geCaughtUICanvasGroup, true);
         }
     }
 
@@ -39,15 +48,32 @@ public class GameEnding : MonoBehaviour
         }
     }
 
-    void EndLevel()
+    void EndLevel(CanvasGroup canvasGroup, bool Restart)
     {
         // how much time then the player ended the level
         timer += Time.deltaTime;
-
+        
         // increase the alpha with time
-        endGameUICanvasGroup.alpha = timer / fadeDuration;
+        canvasGroup.alpha = timer / fadeDuration;
 
+
+        // display the image before restarting or exiting the game
         if (timer > fadeDuration + displayImageDuration)
-            Application.Quit();
+        {
+            if (Restart)
+            {
+                SceneManager.LoadScene(0);
+            }
+            else
+            {
+                Application.Quit();
+            }
+        }
+    }
+
+    // set the didPlayerGetCaught to true in case the player is caught
+    public void CaughtPlayer()
+    {
+        didPlayerGetCaught = true;
     }
 }

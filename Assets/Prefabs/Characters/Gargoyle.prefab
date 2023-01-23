@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  gameEnding: {fileID: 0}
 --- !u!1 &6981398512890196710
 GameObject:
   m_ObjectHideFlags: 0
